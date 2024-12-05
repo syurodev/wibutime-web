@@ -4,7 +4,6 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  @apply text-neutral-900 dark:text-neutral-100 transition-all duration-700 ease-in-out;
 }
 
 @layer base {

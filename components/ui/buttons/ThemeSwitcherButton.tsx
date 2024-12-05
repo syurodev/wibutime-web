@@ -1,13 +1,23 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/cuicui/utils/cn/cn";
+import React, { FC } from "react";
+import { useTheme } from "next-themes";
 
-export const ThemeSwitcherButton = () => {
-  const [theme, setTheme] = React.useState<"light" | "dark">("light");
+import { cn } from "@/common/utils/cn";
+
+type IProps = {
+  withLabel?: string;
+  className?: string;
+};
+
+export const ThemeSwitcherButton: FC<IProps> = ({ withLabel, className }) => {
+  const { theme, setTheme } = useTheme();
   return (
     <button
-      className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-neutral-500/10 bg-white px-2 py-1 font-medium text-neutral-600 tracking-tight hover:bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+      className={cn(
+        "group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-neutral-500/10 bg-white px-2 py-1 font-medium text-neutral-600 tracking-tight hover:bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700",
+        className
+      )}
       onClick={() => setTheme((prev) => (prev === "light" ? "dark" : "light"))}
       type="button"
     >
@@ -35,28 +45,30 @@ export const ThemeSwitcherButton = () => {
           )}
         />
       </span>
-      <span className="relative h-6 w-12">
-        <span
-          className={cn(
-            "absolute top-0 left-0 transition-all duration-1000",
-            theme === "light"
-              ? "-translate-y-4 opacity-0 blur-lg"
-              : "translate-y-0 opacity-100 blur-0"
-          )}
-        >
-          Dark
+      {withLabel && (
+        <span className="relative h-6 w-12">
+          <span
+            className={cn(
+              "absolute top-0 left-0 transition-all duration-1000",
+              theme === "light"
+                ? "-translate-y-4 opacity-0 blur-lg"
+                : "translate-y-0 opacity-100 blur-0"
+            )}
+          >
+            Dark
+          </span>
+          <span
+            className={cn(
+              "absolute top-0 left-0 transition-all duration-1000",
+              theme === "dark"
+                ? "translate-y-4 opacity-0 blur-lg"
+                : "translate-y-0 opacity-100 blur-0"
+            )}
+          >
+            Light
+          </span>
         </span>
-        <span
-          className={cn(
-            "absolute top-0 left-0 transition-all duration-1000",
-            theme === "dark"
-              ? "translate-y-4 opacity-0 blur-lg"
-              : "translate-y-0 opacity-100 blur-0"
-          )}
-        >
-          Light
-        </span>
-      </span>
+      )}
     </button>
   );
 };

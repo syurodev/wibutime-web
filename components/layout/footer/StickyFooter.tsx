@@ -4,21 +4,18 @@ import type { ComponentProps, ReactNode } from "react";
 export function StickyFooter({
   children,
   className,
-  heightValue = "100dvh",
   ...props
 }: {
   children: ReactNode;
   className?: string;
-  heightValue?: string;
 } & ComponentProps<"div">) {
   return (
     <div
-      className={`relative h-[100dvh]`}
+      className={`relative h-[500px]`}
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+      {...props}
     >
-      <div
-        className={cn(`fixed bottom-0 h-[${heightValue}] w-full`, className)}
-      >
+      <div className={cn(`fixed bottom-0 h-[500px] w-full`, className)}>
         {children}
       </div>
     </div>

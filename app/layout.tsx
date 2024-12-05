@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import localFont from "next/font/local";
 import "./globals.css";
-import { StickyFooter } from "@/components/layout/footer/StickyFooter";
-import { FooterContent } from "@/components/layout/footer/FooterContent";
+import { ThemeProvider } from "@/components/providers/theme.provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,15 +26,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        {/* <StickyFooter className="text-neutral-900 dark:text-neutral-100">
-          <FooterContent />
-        </StickyFooter> */}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            storageKey="wibutime-theme"
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

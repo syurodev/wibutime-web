@@ -155,43 +155,15 @@ const Page = () => {
             </motion.div>
           </motion.div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
-                {/* Email */}
-                {page === "register" && (
-                  <motion.div
-                    layout
-                    key={"email"}
-                    variants={opacity}
-                    animate="animate"
-                    initial="initial"
-                    exit="exit"
-                  >
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input
-                              id="email"
-                              placeholder="job@example.com"
-                              type="email"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </motion.div>
-                )}
-
-                {/* Username */}
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-2"
+            >
+              {/* Email */}
+              {page === "register" && (
                 <motion.div
                   layout
-                  key={"username"}
+                  key={"email"}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
@@ -199,15 +171,15 @@ const Page = () => {
                 >
                   <FormField
                     control={form.control}
-                    name="username"
+                    name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input
-                            id="username"
-                            placeholder="Username or email"
-                            type="text"
+                            id="email"
+                            placeholder="job@example.com"
+                            type="email"
                             {...field}
                           />
                         </FormControl>
@@ -216,11 +188,71 @@ const Page = () => {
                     )}
                   />
                 </motion.div>
+              )}
 
-                {/* Password */}
+              {/* Username */}
+              <motion.div
+                layout
+                key={"username"}
+                variants={opacity}
+                animate="animate"
+                initial="initial"
+                exit="exit"
+              >
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="username"
+                          placeholder="Username or email"
+                          type="text"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </motion.div>
+
+              {/* Password */}
+              <motion.div
+                layout
+                key={"password"}
+                variants={opacity}
+                animate="animate"
+                initial="initial"
+                exit="exit"
+              >
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="password"
+                          placeholder="Type password here..."
+                          type="password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </motion.div>
+
+              {/* Confirm Password */}
+              {page === "register" && (
                 <motion.div
                   layout
-                  key={"password"}
+                  key={"confirmPassword"}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
@@ -228,14 +260,14 @@ const Page = () => {
                 >
                   <FormField
                     control={form.control}
-                    name="password"
+                    name="confirmPassword"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
                           <Input
-                            id="password"
-                            placeholder="Type password here..."
+                            id="confirmPassword"
+                            placeholder="Retype password here..."
                             type="password"
                             {...field}
                           />
@@ -245,38 +277,7 @@ const Page = () => {
                     )}
                   />
                 </motion.div>
-
-                {/* Confirm Password */}
-                {page === "register" && (
-                  <motion.div
-                    layout
-                    key={"confirmPassword"}
-                    variants={opacity}
-                    animate="animate"
-                    initial="initial"
-                    exit="exit"
-                  >
-                    <FormField
-                      control={form.control}
-                      name="confirmPassword"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Confirm Password</FormLabel>
-                          <FormControl>
-                            <Input
-                              id="confirmPassword"
-                              placeholder="Retype password here..."
-                              type="password"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </motion.div>
-                )}
-              </div>
+              )}
 
               {/* Submit Button */}
               <motion.div
