@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
-import localFont from "next/font/local";
-import "./globals.css";
+import { Inter } from "next/font/google";
+
+import "@/app/globals.css";
 import { ThemeProvider } from "@/components/providers/theme.provider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["vietnamese"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui"],
+  variable: "--inter",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +26,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${inter.variable} subpixel-antialiased`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"

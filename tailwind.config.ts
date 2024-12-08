@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        time: ["time-new-roman", "serif"],
+        "operator-mono": "var(--operator-mono)",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -60,6 +64,8 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "t-full-b-lg": "500px 500px 5rem 5rem",
+        "t-lg-b-full": "5rem 5rem 500px 500px",
       },
     },
   },

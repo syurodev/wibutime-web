@@ -2,6 +2,7 @@
 
 import Container from "@/components/layout/Container";
 import CardContent from "@/components/ui/cards/CardContent";
+import Trending from "@/components/layout/home/Trending";
 // const ThemeSwitcherButton = dynamic(
 //   () =>
 //     import("@/components/ui/buttons/ThemeSwitcherButton").then(
@@ -98,6 +99,7 @@ const fakeLightnovelData = [
 export default function Home() {
   return (
     <div className="w-full">
+      <Trending/>
       <div className="h-full flex flex-col items-center justify-center">
         <Container withPadding={true}>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full h-fit">
