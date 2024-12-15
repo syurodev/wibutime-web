@@ -1,4 +1,4 @@
-import { cn } from "@/common/utils/cn";
+import { cn } from '@/common/utils/cn';
 
 export default function Container({
   children,
@@ -15,9 +15,9 @@ export default function Container({
     <section
       className={cn(
         `mx-auto w-full relative overflow-hidden ${
-          withPadding ? "max-w-7xl p-4" : ""
-        } ${withPaddingTop ? "mt-[60px]" : ""}`,
-        className
+          withPadding ? 'max-w-7xl p-4' : ''
+        } ${withPaddingTop ? 'pt-[50px]' : ''}`,
+        className,
       )}
     >
       {children}

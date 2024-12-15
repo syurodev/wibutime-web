@@ -1,12 +1,14 @@
-import React, { FC } from "react";
-import Image from "next/image";
-import { NumberFormatter, TimeUtil } from "@syurodev/ts-common";
-import { ClockArrowUp, Eye } from "lucide-react";
+import React, { FC } from 'react';
+import Image from 'next/image';
+import { NumberFormatter, TimeUtil } from '@syurodev/ts-common';
+import { ClockArrowUp, Eye } from 'lucide-react';
 
-import { Badge } from "../shadcn/badge";
-import { CardMouseHighlightingBorder } from "./CardMouseHighlightingBorder";
+import { Badge } from '../shadcn/badge';
+import CardMouseHighlightingBorder from './CardMouseHighlightingBorder';
+import { CONTENT_TYPE } from '@/common/constants/content-type.enum';
 
 type IProps = {
+  contentType: CONTENT_TYPE;
   data: {
     id: string;
     image: string;
@@ -23,21 +25,21 @@ type IProps = {
   showScore?: boolean;
 };
 
-const CardContent: FC<IProps> = ({ data, showScore = true }) => {
+const CardContent: FC<IProps> = ({ data, showScore = true, contentType }) => {
   const getBadgeClass = (
-    score: number
-  ): "low_score" | "medium_score" | "high_score" => {
+    score: number,
+  ): 'low_score' | 'medium_score' | 'high_score' => {
     if (score < 3.5) {
-      return "low_score";
+      return 'low_score';
     } else if (score < 7.5) {
-      return "medium_score";
+      return 'medium_score';
     } else {
-      return "high_score";
+      return 'high_score';
     }
   };
 
   return (
-    <CardMouseHighlightingBorder>
+    <CardMouseHighlightingBorder contentType={contentType}>
       <div className="flex flex-col w-full h-full relative">
         <div className="w-full h-full relative max-w-[500px] max-h-[700px] overflow-hidden flex-[3] lg:flex-[6] rounded-[calc(1rem-4px)] shadow">
           {showScore && (
@@ -71,7 +73,7 @@ const CardContent: FC<IProps> = ({ data, showScore = true }) => {
             <div className="inline-flex items-center gap-1 font-semibold w-fit">
               <Eye className="size-3" />
               <span className="text-xs">
-                {NumberFormatter.shorten(data.views, "en-EN")}
+                {NumberFormatter.shorten(data.views, 'en-EN')}
               </span>
             </div>
           </div>

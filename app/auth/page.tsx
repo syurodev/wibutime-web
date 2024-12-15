@@ -1,18 +1,18 @@
-"use client";
-import React, { SVGProps, useEffect } from "react";
-import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+'use client';
+import React, { SVGProps, useEffect } from 'react';
+import Image from 'next/image';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { Button } from "@/components/ui/shadcn/button";
-import { Input } from "@/components/ui/shadcn/input";
-import { opacity } from "@/common/motions/opacity.motion";
+import { Button } from '@/components/ui/shadcn/button';
+import { Input } from '@/components/ui/shadcn/input';
+import { opacity } from '@/common/motions/opacity.motion';
 import {
   ISignInSchema,
   SignInSchema,
-} from "@/common/validations/sign-in.validation";
+} from '@/common/validations/sign-in.validation';
 import {
   Form,
   FormControl,
@@ -20,41 +20,41 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/shadcn/form";
+} from '@/components/ui/shadcn/form';
 import {
   ISignUpSchema,
   SignUpSchema,
-} from "@/common/validations/sign-up.validation";
-import GoogleIcon from "@/components/svg/google.svg";
+} from '@/common/validations/sign-up.validation';
+import GoogleIcon from '@/components/svg/google.svg';
 
 const Page = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const page =
-    ["login", "register"].find((x) => x === searchParams.get("page")) ??
-    "login";
+    ['login', 'register'].find((x) => x === searchParams.get('page')) ??
+    'login';
 
   const changePage = (page: string) => {
     router.push(`/auth?page=${page}`);
   };
 
   const form = useForm<ISignInSchema | ISignUpSchema>({
-    resolver: zodResolver(page === "login" ? SignInSchema : SignUpSchema),
+    resolver: zodResolver(page === 'login' ? SignInSchema : SignUpSchema),
     defaultValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      username: "",
+      email: '',
+      password: '',
+      confirmPassword: '',
+      username: '',
     },
   });
 
   useEffect(() => {
-    form.reset({ email: "", password: "", confirmPassword: "", username: "" });
+    form.reset({ email: '', password: '', confirmPassword: '', username: '' });
   }, [page, form]);
 
   function onSubmit(values: ISignInSchema | ISignUpSchema) {
-    if (page === "login") {
+    if (page === 'login') {
     } else {
     }
     console.log(values);
@@ -76,7 +76,7 @@ const Page = () => {
             exit="exit"
           >
             <span>Enjoy Light Novels, Manga, and Anime,</span>
-            <span className="text-main_color"> All in One Place.</span>
+            <span className="text-main-color"> All in One Place.</span>
           </motion.div>
           <motion.p
             layout
@@ -93,7 +93,7 @@ const Page = () => {
           <motion.div
             className="mt-8"
             layout
-            key={"google"}
+            key={'google'}
             variants={opacity}
             animate="animate"
             initial="initial"
@@ -102,7 +102,7 @@ const Page = () => {
             <Button
               aria-label="Sign in with Google"
               className="inline-flex w-full items-center justify-center gap-3"
-              size={"lg"}
+              size={'lg'}
               type="button"
             >
               <GoogleIcon className="size-7" />
@@ -111,7 +111,7 @@ const Page = () => {
             <motion.div
               layout
               className="relative py-3"
-              key={"email"}
+              key={'email'}
               variants={opacity}
               animate="animate"
               initial="initial"
@@ -130,10 +130,10 @@ const Page = () => {
               className="flex flex-col gap-2"
             >
               {/* Email */}
-              {page === "register" && (
+              {page === 'register' && (
                 <motion.div
                   layout
-                  key={"email"}
+                  key={'email'}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
@@ -163,7 +163,7 @@ const Page = () => {
               {/* Username */}
               <motion.div
                 layout
-                key={"username"}
+                key={'username'}
                 variants={opacity}
                 animate="animate"
                 initial="initial"
@@ -192,7 +192,7 @@ const Page = () => {
               {/* Password */}
               <motion.div
                 layout
-                key={"password"}
+                key={'password'}
                 variants={opacity}
                 animate="animate"
                 initial="initial"
@@ -219,10 +219,10 @@ const Page = () => {
               </motion.div>
 
               {/* Confirm Password */}
-              {page === "register" && (
+              {page === 'register' && (
                 <motion.div
                   layout
-                  key={"confirmPassword"}
+                  key={'confirmPassword'}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
@@ -253,49 +253,49 @@ const Page = () => {
               <motion.div
                 className="col-span-full mt-4"
                 layout
-                key={"login-or-register"}
+                key={'login-or-register'}
                 variants={opacity}
                 animate="animate"
                 initial="initial"
                 exit="exit"
               >
                 <Button
-                  variant={"blur"}
+                  variant={'blur'}
                   type="submit"
-                  size={"lg"}
+                  size={'lg'}
                   className="w-full"
                 >
-                  {page === "login" ? "Sign in" : "Sign up"}
+                  {page === 'login' ? 'Sign in' : 'Sign up'}
                 </Button>
               </motion.div>
               <div className="mt-6 text-sm">
                 <motion.span
                   className="mx-auto font-medium text-black leading-tight"
                   layout
-                  key={"footer-text"}
+                  key={'footer-text'}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
                   exit="exit"
                 >
-                  {page === "login"
-                    ? "Not have a account?"
-                    : "Already have a account?"}
+                  {page === 'login'
+                    ? 'Not have a account?'
+                    : 'Already have a account?'}
                 </motion.span>
                 <motion.button
                   className="hover:text-black ml-1 underline cursor-pointer"
                   onClick={() =>
-                    changePage(page === "login" ? "register" : "login")
+                    changePage(page === 'login' ? 'register' : 'login')
                   }
                   type="button"
                   layout
-                  key={"footer-button"}
+                  key={'footer-button'}
                   variants={opacity}
                   animate="animate"
                   initial="initial"
                   exit="exit"
                 >
-                  {page === "login" ? "Sign up now" : "Sign in now"}
+                  {page === 'login' ? 'Sign up now' : 'Sign in now'}
                 </motion.button>
               </div>
             </form>
@@ -303,7 +303,7 @@ const Page = () => {
         </div>
       </motion.div>
       <Image
-        src={"/images/auth.jpg"}
+        src={'/images/auth.jpg'}
         alt="Login Image"
         fill
         className="object-cover"

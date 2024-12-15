@@ -1,12 +1,26 @@
-"use client";
-import { useMouse } from "@/hooks/useMouse";
+'use client';
+import { CONTENT_TYPE } from '@/common/constants/content-type.enum';
+import { useMouse } from '@/hooks/useMouse';
+import { memo } from 'react';
 
-export const CardMouseHighlightingBorder = ({
+const CardMouseHighlightingBorder = ({
+  contentType,
   children,
 }: {
+  contentType: CONTENT_TYPE;
   children: React.ReactNode;
 }) => {
   const [mouse, parentRef] = useMouse();
+
+  const getSpotlightColorStop = () => {
+    if (contentType === CONTENT_TYPE.ANIME) {
+      return 'hsl(var(--anime-color))';
+    } else if (contentType === CONTENT_TYPE.MANGA) {
+      return 'hsl(var(--manga-color))';
+    } else {
+      return 'hsl(var(--novel-color))';
+    }
+  };
 
   return (
     <div
@@ -14,11 +28,11 @@ export const CardMouseHighlightingBorder = ({
       ref={parentRef}
       style={{
         //@ts-expect-error : This is a valid css variable
-        "--x": `${mouse.elementX}px`,
-        "--y": `${mouse.elementY}px`,
-        "--spotlight-color-stops": "#14b8a6 ,transparent",
-        "--spotlight-size": "250px",
-        "--radius": "1rem",
+        '--x': `${mouse.elementX}px`,
+        '--y': `${mouse.elementY}px`,
+        '--spotlight-color-stops': `${getSpotlightColorStop()} ,transparent`,
+        '--spotlight-size': '200px',
+        '--radius': '1rem',
       }}
     >
       <div className="absolute inset-px transform-gpu rounded-[calc(var(--radius)-1px)] bg-neutral-100/95 dark:bg-neutral-800/90 transition-all duration-500 ease-in-out" />
@@ -27,3 +41,5 @@ export const CardMouseHighlightingBorder = ({
     </div>
   );
 };
+
+export default memo(CardMouseHighlightingBorder);
