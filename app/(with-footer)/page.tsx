@@ -214,6 +214,38 @@ const fakeTrending = [
           },
         ],
       },
+      {
+        id: '14',
+        type: 'p',
+        children: [
+          {
+            text: 'Dư sức cân cả thế giới nhưng chả có cái gì xảy ra hết trơn, giỡn mặt hả?!',
+          },
+        ],
+      },
+      {
+        id: '15',
+        type: 'p',
+        children: [{ text: 'Thôi đủ rồi, ổn thôi, ổn cả mà!' }],
+      },
+      {
+        id: '16',
+        type: 'p',
+        children: [
+          {
+            text: 'Nếu mọi thứ bắt buộc phải như thế này thì bản thân tôi sẽ tự túc! Phải! Tôi sẽ tự thân lập ra tổ chức siêu nhiên thần thần bí bí luôn!',
+          },
+        ],
+      },
+      {
+        id: '17',
+        type: 'p',
+        children: [
+          {
+            text: 'Nào, hãy xem đây, những trang sử phi thường do tự thân tôi viết nên! Tèn ten ten!',
+          },
+        ],
+      },
     ],
   },
   {
@@ -327,17 +359,17 @@ export default function Home() {
               index === currentTrendingIndex && (
                 <MotionDiv
                   key={'trending' + index}
-                  className="w-full h-full flex flex-col lg:flex-row overflow-hidden relative p-4 gap-4"
+                  className="w-full h-full flex flex-col lg:flex-row overflow-hidden p-4 gap-4 pb-10"
                 >
-                  <div className="flex-auto w-full relative flex flex-col gap-4">
+                  <div className="flex-auto w-full lg:relative flex flex-col gap-4 lg:pb-7">
                     <div className="h-fit">
                       <MotionDiv
                         delay={0.15}
-                        className="text-sm uppercase font-medium text-center flex items-center justify-center gap-1"
+                        className="text-xs uppercase font-medium text-center flex items-center justify-center gap-1"
                       >
                         <span className={contentTypeClass}>{contentType}</span>
                         <span>Spotlight</span>
-                        <Crown className="size-5 text-yellow-500" />
+                        <Crown className="size-3 text-yellow-500" />
                         <span>Weekly Top Pick</span>
                       </MotionDiv>
                       <MotionP
@@ -390,6 +422,42 @@ export default function Home() {
                         boxClassName="overflow-y-scroll h-full"
                       />
                     </MotionDiv>
+
+                    {/* slide button */}
+                    <MotionDiv
+                      reverse={true}
+                      delay={0.7}
+                      className="flex w-fit gap-4 absolute bottom-2 lg:bottom-0 left-1/2 !-translate-x-1/2"
+                    >
+                      {fakeTrending.map((x, index) => {
+                        return (
+                          <button
+                            className={`rounded-full size-6 relative overflow-hidden ${
+                              index === currentTrendingIndex
+                                ? 'border-2 border-primary'
+                                : ''
+                            }`}
+                            onClick={() => setCurrentTrendingIndex(index)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                setCurrentTrendingIndex(index);
+                              }
+                            }}
+                            key={'trending-' + index}
+                            role="tab"
+                            aria-selected={index === currentTrendingIndex}
+                            tabIndex={0}
+                          >
+                            <Image
+                              src={x.image}
+                              alt={x.title}
+                              fill
+                              className={'object-cover'}
+                            />
+                          </button>
+                        );
+                      })}
+                    </MotionDiv>
                   </div>
 
                   <MotionDiv delay={0.35} className="w-full lg:w-fit h-full">
@@ -409,43 +477,8 @@ export default function Home() {
                 </MotionDiv>
               )
             );
-          })}{' '}
-        </AnimatePresence>
-
-        <MotionDiv
-          reverse={true}
-          delay={0.7}
-          className="flex w-fit gap-4 absolute bottom-4 left-1/2 !-translate-x-1/2"
-        >
-          {fakeTrending.map((x, index) => {
-            return (
-              <button
-                className={`rounded-full size-8 relative overflow-hidden ${
-                  index === currentTrendingIndex
-                    ? 'border-2 border-primary'
-                    : ''
-                }`}
-                onClick={() => setCurrentTrendingIndex(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    setCurrentTrendingIndex(index);
-                  }
-                }}
-                key={'trending-' + index}
-                role="tab"
-                aria-selected={index === currentTrendingIndex}
-                tabIndex={0}
-              >
-                <Image
-                  src={x.image}
-                  alt={x.title}
-                  fill
-                  className={'object-cover'}
-                />
-              </button>
-            );
           })}
-        </MotionDiv>
+        </AnimatePresence>
       </div>
 
       <div className="h-full flex flex-col items-center justify-center">
