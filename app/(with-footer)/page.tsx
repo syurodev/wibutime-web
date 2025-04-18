@@ -1,12 +1,12 @@
-import Container from '@/components/layout/Container';
 import { getTopNovels } from '@/actions/novels/top';
 import { TOP_TYPE } from '@/common/constants/top-type.enum';
+import Container from '@/components/layout/Container';
 
-import Hero from '@/components/layout/home/Hero';
-import { NovelSummary } from '@/common/interfaces/novels/novel-summary';
 import { getListNovels } from '@/actions/novels/get-list';
-import { SORT } from '@/common/constants/sort.enum';
 import { CONTENT_TYPE } from '@/common/constants/content-type.enum';
+import { SORT } from '@/common/constants/sort.enum';
+import { NovelSummary } from '@/common/interfaces/novels/novel-summary';
+import Hero from '@/components/layout/home/Hero';
 import CardContent from '@/components/ui/cards/CardContent';
 
 export default async function Home() {
@@ -14,6 +14,8 @@ export default async function Home() {
     getTopNovels({ type: TOP_TYPE.ALL_TIME, limit: 3 }),
     getListNovels({ query: { sort: SORT.OLDEST, page: 1, limit: 20 } }),
   ]);
+
+  console.log(listNovel);
 
   return (
     <Container className="max-w-[1500px]" withPaddingTop>

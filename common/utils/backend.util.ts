@@ -11,13 +11,14 @@ type BackendResponse<T> = {
 
 export class BackendUtils {
   static getServerUrl(): string {
-    return process.env.SERVER_URL ?? 'http://localhost:3000';
+    return process.env.SERVER_URL ?? 'http://localhost:3000/api/v1';
   }
 
   static async get<T>(
     url: string,
     projectId: PROJECTID,
   ): Promise<BackendResponse<T>> {
+    console.log(`${this.getServerUrl()}/${url}`);
     const response = await fetch(`${this.getServerUrl()}/${url}`, {
       headers: {
         'Content-Type': 'application/json',

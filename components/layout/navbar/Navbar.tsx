@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import dynamic from 'next/dynamic';
 
 const ThemeSwitcherButton = dynamic(
@@ -11,13 +10,13 @@ const ThemeSwitcherButton = dynamic(
     ssr: false,
   },
 );
-const Header = () => {
+const Navbar = () => {
   return (
-    <header className="h-[50px] w-full fixed backdrop-blur-md z-50 top-0 left-0 flex items-center justify-center">
+    <nav className="h-[50px] w-full max-w-[700px] sticky bg-background/70 rounded-full backdrop-blur-md z-50 top-2 left-0 flex items-center justify-center mx-auto">
       Header
       <ThemeSwitcherButton />
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;

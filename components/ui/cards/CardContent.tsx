@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
-import Image from 'next/image';
-import { NumberFormatter, TimeUtil } from '@syurodev/ts-common';
+import { NumberFormatter } from '@syurodev/ts-common';
 import { ClockArrowUp, Eye } from 'lucide-react';
 import { Link } from 'next-view-transitions';
+import Image from 'next/image';
+import { FC } from 'react';
 
-import CardMouseHighlightingBorder from './CardMouseHighlightingBorder';
 import { CONTENT_TYPE } from '@/common/constants/content-type.enum';
-import { NovelSummary } from '@/common/interfaces/novels/novel-summary';
 import { DEFAULT } from '@/common/constants/default.enum';
+import { NovelSummary } from '@/common/interfaces/novels/novel-summary';
 import { Badge } from '@/components/ui/shadcn/badge';
+import CardMouseHighlightingBorder from './CardMouseHighlightingBorder';
 
 type IProps = {
   contentType: CONTENT_TYPE;
@@ -79,7 +79,7 @@ const CardContent: FC<IProps> = ({ data, showScore = true, contentType }) => {
             <div className="inline-flex items-center gap-1 font-semibold">
               <ClockArrowUp className="size-3" />
               <span className="text-xs line-clamp-1">
-                {new TimeUtil(data.latest_chapter_date).convertToClientDate()}
+                {data.latest_chapter_date}
               </span>
             </div>
           </div>
